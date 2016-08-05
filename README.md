@@ -28,6 +28,7 @@ Finally, these extra things should be kept in mind when writing a CNI plugin for
 5. Build containers - as part of the developer workflow, openshift builds docker images. The build is run through 'docker build' api. This means that docker's default networking will be invoked for this container (CNI/kube-plugin will not run as this is not a pod). These containers still need a network and access to external network (the internet e.g.).
 
 6. *Respect the PodSecurityContext::HostNetwork=true for infra pods. Or provide an externally routable IP address to the pod. This is used for the load balancer pods which are the entry point for all external traffic funneling into the cluster.
+   - Note that the HostPort<->ContainerPort mapping will not be available by default if the CNI plugin is enabled (as the default docker networking is turned off).
 
 
 
