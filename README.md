@@ -16,8 +16,8 @@ Learn more about CNI [here](http://kubernetes.io/docs/admin/network-plugins/#cni
 Finally, these extra things should be kept in mind when writing a CNI plugin for openshift:
 
 1. A plugin can follow the NetworkPolicy objects from kubernetes and implement the user/admin intent on multi-tenancy (see https://github.com/kubernetes/kubernetes/blob/master/docs/proposals/network-policy.md). Or just ignore the multi-tenancy completely. Or implement a model where multi-tenancy is based on projects i.e. kubernetes namespaces, where,
-- Each namespace should be treated like a tenant where its pods and services are isolated from another project's pods/services
-- *Support exists for operations like merge/join networks even when they belong to different namespaces
+   - Each namespace should be treated like a tenant where its pods and services are isolated from another project's pods/services
+   - *Support exists for operations like merge/join networks even when they belong to different namespaces
 
 2. Certain services in the cluster will be run as infrastructure services. e.g. Load balancer, registry, skynds. The plugin should allow for a 'global' tenant which is-accessible-by/can-access all pods of the cluster. For example, a load balancer can run in two modes - private and global. The global load balancer should have access to all tenants/namespaces of the cluster. A private load balancer is one that is launched as a pod by a particular namespace, and this should obey tenant isolation rules.
 
